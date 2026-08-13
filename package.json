@@ -1,0 +1,49 @@
+{
+  "name": "pi-draft-history",
+  "version": "0.1.0",
+  "description": "Keep unsent Pi editor drafts in prompt history when clearing the editor.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/so1ve/pi-draft-history.git"
+  },
+  "bugs": {
+    "url": "https://github.com/so1ve/pi-draft-history/issues"
+  },
+  "homepage": "https://github.com/so1ve/pi-draft-history#readme",
+  "keywords": [
+    "pi-package",
+    "pi-coding-agent",
+    "pi-extension",
+    "prompt-history",
+    "draft-history"
+  ],
+  "files": [
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "prepack": "tsc --noEmit",
+    "release": "bumpp"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.84.1 <1.0.0"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.84.1",
+    "bumpp": "12.0.0",
+    "typescript": "7.0.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  }
+}
