@@ -1,6 +1,6 @@
 {
   "name": "pi-draft-history",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Keep unsent Pi editor drafts in prompt history when clearing the editor.",
   "type": "module",
   "license": "MIT",
