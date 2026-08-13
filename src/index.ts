@@ -3,6 +3,11 @@ import {
   type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 
+function isBrowsingHistory(editor: object): boolean {
+  const historyIndex = Reflect.get(editor, "historyIndex");
+  return typeof historyIndex === "number" && historyIndex >= 0;
+}
+
 export default function draftHistory(pi: ExtensionAPI): void {
   pi.on("session_start", (_event, ctx) => {
     const previous = ctx.ui.getEditorComponent();
@@ -17,7 +22,7 @@ export default function draftHistory(pi: ExtensionAPI): void {
         if (keybindings.matches(data, "app.clear")) {
           const draft = editor.getExpandedText?.() ?? editor.getText();
 
-          if (draft.trim()) {
+          if (draft.trim() && !isBrowsingHistory(editor)) {
             editor.addToHistory?.(draft);
           }
         }
