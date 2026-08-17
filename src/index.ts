@@ -3,9 +3,17 @@ import {
   type ExtensionAPI,
 } from "@earendil-works/pi-coding-agent";
 
-function isBrowsingHistory(editor: object): boolean {
+function removeBrowsedHistoryEntry(editor: object): void {
   const historyIndex = Reflect.get(editor, "historyIndex");
-  return typeof historyIndex === "number" && historyIndex >= 0;
+  const history = Reflect.get(editor, "history");
+
+  if (
+    typeof historyIndex === "number" &&
+    historyIndex >= 0 &&
+    Array.isArray(history)
+  ) {
+    history.splice(historyIndex, 1);
+  }
 }
 
 export default function draftHistory(pi: ExtensionAPI): void {
@@ -22,7 +30,8 @@ export default function draftHistory(pi: ExtensionAPI): void {
         if (keybindings.matches(data, "app.clear")) {
           const draft = editor.getExpandedText?.() ?? editor.getText();
 
-          if (draft.trim() && !isBrowsingHistory(editor)) {
+          if (draft.trim()) {
+            removeBrowsedHistoryEntry(editor);
             editor.addToHistory?.(draft);
           }
         }

@@ -4,8 +4,8 @@ A small [Pi coding agent](https://pi.dev/) extension that keeps an unsent
 editor draft in prompt history when the editor is cleared.
 
 Type a draft, invoke Pi's `app.clear` action (Ctrl-C by default), then press Up
-to restore it. Clearing an entry selected by navigating prompt history does not
-store that entry again.
+to restore it. Clearing an entry selected by navigating prompt history moves
+that entry to the newest position instead of duplicating it.
 
 ## Install
 
